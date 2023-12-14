@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAE303</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../SAE.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+<body>
+  <header>
+    <label>
+      <input type="checkbox">
+      <span class="menu"> <span class="hamburger"></span> </span>
+      <ul>
+        <li> <a href="../index.html">Accueil</a> </li>
+        <li> <a href="sat4jcp.html">Sat4j-cp</a></li>
+        <li> <a href="sat4jrs.html">Sat4j-rs</a></li>
+        <li> <a href="mistral.html">Mistral</a></li>
+        <li> <a href="cosoco.html">CoSoco</a></li>
+        <li> <a href="btd.html">BTD</a></li>
+        <li> <a href="choco.html">Choco</a></li>
+        <li> <a href="funscopglue.html">Fun-sCOP-glue</a></li>
+        <li> <a href="funscopcad.html">Fun-sCOP-cad</a></li>
+        <li> <a href="ace.html">ACE</a></li>
+        <li> <a href="picat.html">Picat</a></li>
+      </ul>
+      </label>
+      <h1>SAE 303 NAS</h1>
+  </header>
+<canvas id="Mistral"></canvas>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  if (typeof data === 'undefined') {
+    console.error("La variable 'data' n'est pas définie dans SAE.js.");
+    return;
+  }
+
+  var filteredData = data.filter(entry => entry.type === 'table' && entry.data && Array.isArray(entry.data));
+
+  if (filteredData.length === 0) {
+    console.error("Aucune donnée valide n'a été trouvée dans le format attendu.");
+    return;
+  }
+
+  var tableData = filteredData[0].data;
+
+  var filteredAceData = tableData.filter(entry => entry.name && entry.name.toLowerCase() === "mistral" && parseFloat(entry.time) < 2400);
+
+  var problemNames = filteredAceData.map(entry => entry.fullname);
+  var times = filteredAceData.map(entry => parseFloat(entry.time));
+
+  var ctx = document.getElementById('Mistral').getContext('2d');
+  var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: problemNames,
+      datasets: [{
+        label: 'Temps de résolution par problème (Mistral)',
+        data: times,
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 2400,
+        }
+      }
+    }
+  });
+
+  myBarChart.options.plugins.legend.labels.filter = function(legendItem, chartData) {
+    return chartData.labels.indexOf(legendItem.text) !== -1;
+  };
+});
+
+
+</script>
+
+</body>
+</html>

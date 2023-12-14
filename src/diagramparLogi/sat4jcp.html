@@ -6,11 +6,32 @@
     <title>SAE303</title>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="SAE.js"></script>
+    <script src="../SAE.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+
 </head>
 <body>
-<h1>SAE 303</h1>
-<canvas id="ACE"></canvas>
+  <header>
+    <label>
+      <input type="checkbox">
+      <span class="menu"> <span class="hamburger"></span> </span>
+      <ul>
+        <li> <a href="../index.html">Accueil</a> </li>
+        <li> <a href="sat4jcp.html">Sat4j-cp</a></li>
+        <li> <a href="sat4jrs.html">Sat4j-rs</a></li>
+        <li> <a href="mistral.html">Mistral</a></li>
+        <li> <a href="cosoco.html">CoSoco</a></li>
+        <li> <a href="btd.html">BTD</a></li>
+        <li> <a href="choco.html">Choco</a></li>
+        <li> <a href="funscopglue.html">Fun-sCOP-glue</a></li>
+        <li> <a href="funscopcad.html">Fun-sCOP-cad</a></li>
+        <li> <a href="ace.html">ACE</a></li>
+        <li> <a href="picat.html">Picat</a></li>
+      </ul>
+      </label>
+      <h1>SAE 303 NAS</h1>
+  </header>
+<canvas id="Sat4jcp"></canvas>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -28,18 +49,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
   var tableData = filteredData[0].data;
 
-  var filteredAceData = tableData.filter(entry => entry.name && entry.name.toLowerCase() === "ace" && parseFloat(entry.time) < 2400);
+  var filteredAceData = tableData.filter(entry => entry.name && entry.name.toLowerCase() === "sat4j-cp" && parseFloat(entry.time) < 2400);
 
   var problemNames = filteredAceData.map(entry => entry.fullname);
   var times = filteredAceData.map(entry => parseFloat(entry.time));
 
-  var ctx = document.getElementById('ACE').getContext('2d');
+  var ctx = document.getElementById('Sat4jcp').getContext('2d');
   var myBarChart = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: problemNames,
       datasets: [{
-        label: 'Temps de résolution par problème (ACE)',
+        label: 'Temps de résolution par problème (Sat4j-cp)',
         data: times,
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',
