@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAE303</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="SAE.js"></script>
+</head>
+<body>
+<h1>SAE 303</h1>
+<canvas id="ACE"></canvas>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Assurez-vous que la variable 'data' est bien définie dans SAE.js
+    if (typeof data !== 'undefined') {
+      // Affichez les noms de solveurs uniques dans les données
+      var uniqueSolverNames = [...new Set(data.map(entry => entry.name))];
+      console.log("Noms de solveurs uniques dans les données :", uniqueSolverNames);
+
+      // Filtrez les données uniquement pour le solveur ACE (insensible à la casse)
+      var aceData = data.filter(entry => entry.name && entry.name.toLowerCase() === "ace");
+
+      // Filtrez les données pour exclure celles égales ou supérieures à 2400
+      var filteredAceData = aceData.filter(entry => parseFloat(entry.time) < 2400);
+
+      console.log("Données ACE filtrées :", filteredAceData);  // Ajout d'une console.log pour déboguer
+
+      // Extraction des données pour le graphique
+      var problemNames = filteredAceData.map(entry => entry.fullname);
+      var times = filteredAceData.map(entry => parseFloat(entry.time));
+
+      console.log("Noms des problèmes :", problemNames);  // Ajout d'une console.log pour déboguer
+      console.log("Temps de résolution :", times);  // Ajout d'une console.log pour déboguer
+
+      // Déterminez la couleur en fonction du temps de résolution
+      var colors = times.map(time => 'rgba(75, 192, 192, 0.2)');
+
+      var ctx = document.getElementById('ACE').getContext('2d');
+      var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: problemNames,
+          datasets: [{
+            label: 'Temps de résolution par problème (ACE)',
+            data: times,
+            backgroundColor: colors,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 2400,
+            }
+          }
+        }
+      });
+    } else {
+      console.error("La variable 'data' n'est pas définie dans SAE.js.");
+    }
+  });
+</script>
+
+</body>
+</html>
