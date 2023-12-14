@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
 /*diagramme 3*/
 
 window.addEventListener('DOMContentLoaded', (event) => {
-            let solverPicatData = data[2].data.filter(entry => entry.name === 'BTD'); 
+            let solverPicatData = data[2].data.filter(entry => entry.name === 'ACE'); 
 
             let solvedProblems = solverPicatData.filter(entry => entry.status === 'SAT').length;
             let unknownProblems = solverPicatData.filter(entry => entry.status === 'UNKNOWN').length;
@@ -155,7 +155,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 data: {
                     labels: ['Résolus', 'Pas de solution', 'Non résolus à temps'],
                     datasets: [{
-                        label: 'Statut du solver BTD',
+                        label: 'Statut du solver ACE',
                         data: [solvedPercentage, unknownPercentage, unsatPercentage],
                         backgroundColor: [
                             'rgb(75, 192, 192)',
