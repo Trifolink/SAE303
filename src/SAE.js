@@ -1,8 +1,8 @@
 let data =
-//  [
-//     {"type":"header","version":"4.9.7","comment":"Export to JSON plugin for PHPMyAdmin"},
-//     {"type":"database","name":"audemard_results"},
-//     {"type":"table","name":"results","database":"audemard_results","data":
+ [
+    {"type":"header","version":"4.9.7","comment":"Export to JSON plugin for PHPMyAdmin"},
+    {"type":"database","name":"audemard_results"},
+    {"type":"table","name":"results","database":"audemard_results","data":
     [
     {"id":"9453","name":"ACE","fullname":"maincsp\/AztecDiamond-025_c22","family":"AztecDiamond","competition_id":"2","status":"SAT","nb_variables":"2500","nb_clauses":"1300","info_domains":"#types:1 #values:5200 (#4:1300)","info_constraints":"#extension:1300 ","useless_vars":"1200","created_at":"2022-07-11 12:05:51","updated_at":"2022-07-11 12:05:51","solver_id":"7","benchmark_id":"1","time":"4.00"},
     {"id":"9853","name":"Choco","fullname":"maincsp\/AztecDiamond-025_c22","family":"AztecDiamond","competition_id":"2","status":"SAT","nb_variables":"2500","nb_clauses":"1300","info_domains":"#types:1 #values:5200 (#4:1300)","info_constraints":"#extension:1300 ","useless_vars":"1200","created_at":"2022-07-11 12:07:06","updated_at":"2022-07-11 12:07:06","solver_id":"6","benchmark_id":"1","time":"2.00"},
@@ -2005,5 +2005,5 @@ let data =
     {"id":"14394","name":"Sat4j-cp","fullname":"maincsp\/Superpermutation-table-5_c22","family":"Superpermutation","competition_id":"2","status":"UNKNOWN","nb_variables":"302","nb_clauses":"227","info_domains":"#types:2 #values:18794 (#5:153 #121:149)","info_constraints":"#extension:149 #intension:76 #cardinality:1 #instantiation:1 ","useless_vars":"0","created_at":"2022-07-12 11:39:43","updated_at":"2022-07-12 11:39:43","solver_id":"14","benchmark_id":"200","time":"10000.00"},
     {"id":"14594","name":"Sat4j-rs","fullname":"maincsp\/Superpermutation-table-5_c22","family":"Superpermutation","competition_id":"2","status":"UNKNOWN","nb_variables":"302","nb_clauses":"227","info_domains":"#types:2 #values:18794 (#5:153 #121:149)","info_constraints":"#extension:149 #intension:76 #cardinality:1 #instantiation:1 ","useless_vars":"0","created_at":"2022-07-12 11:40:16","updated_at":"2022-07-12 11:40:16","solver_id":"5","benchmark_id":"200","time":"10000.00"}
     ]
-    // }
-    // ]
+    }
+    ]
