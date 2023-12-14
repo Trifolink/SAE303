@@ -9,7 +9,11 @@
 
     <script src="js/SAE.js"></script>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap">
+
+
     <link rel="stylesheet" href="css/style.css">
+
 
 </head>
 <body>
@@ -101,6 +105,88 @@
 
 
 
+<!-- 
+<div style="width: 800px; margin: auto;">
+    <canvas id="comparaison"></canvas>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (typeof data === 'undefined') {
+            console.error("La variable 'data' n'est pas définie dans votre script.");
+            return;
+        }
+
+        // Filtrer les données uniquement pour les solveurs Picat et ACE et celles inférieures à 2400
+        var filteredData = data.filter(entry =>
+            entry.name &&
+            (entry.name.toLowerCase() === "picat" || entry.name.toLowerCase() === "ace") &&
+            parseFloat(entry.time) < 2400
+        );
+
+        // Séparer les données pour chaque solveur
+        var picatData = filteredData.filter(entry => entry.name.toLowerCase() === "picat");
+        var aceData = filteredData.filter(entry => entry.name.toLowerCase() === "ace");
+
+        // Ajouter ces lignes pour afficher les données dans la console
+        console.log("Filtered Data:", filteredData);
+        console.log("Picat Data:", picatData);
+        console.log("ACE Data:", aceData);
+
+        // Extraction des données pour le graphique
+        var picatTimes = picatData.map(entry => parseFloat(entry.time));
+        var aceTimes = aceData.map(entry => parseFloat(entry.time));
+        var problemNames = picatData.map(entry => entry.fullname);
+
+        // Ajouter ces lignes pour afficher les temps dans la console
+        console.log("Picat Times:", picatTimes);
+        console.log("ACE Times:", aceTimes);
+
+        var ctx = document.getElementById('comparaison').getContext('2d');
+        var myScatterChart = new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        label: 'Temps de résolution (Picat)',
+                        data: picatTimes.map((time, index) => ({ x: index, y: time })),
+                        backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                    },
+                    {
+                        label: 'Temps de résolution (ACE)',
+                        data: aceTimes.map((time, index) => ({ x: index, y: time })),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    },
+                ],
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom',
+                        title: {
+                            display: true,
+                            text: 'Problèmes',
+                        },
+                    },
+                    y: {
+                        beginAtZero: true,
+                        max: 2400,
+                        title: {
+                            display: true,
+                            text: 'Temps de résolution',
+                        },
+                    },
+                },
+            },
+        });
+    });
+</script>
+ -->
+
+
+ 
+ 
 
 
 
@@ -109,7 +195,7 @@
 
 <footer>
     <div class="FG">
-        <strong>Sebastien PIQUET</strong>
+        <strong>Sebastien PICQUET</strong>
         <strong>Nathan COQUART</strong>
         <strong>Abigail NOVAIS</strong>
     </div>
