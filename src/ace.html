@@ -19,22 +19,17 @@ document.addEventListener("DOMContentLoaded", function() {
     return;
   }
 
-  // Filtrer les données pour exclure celles qui ne correspondent pas au format attendu
   var filteredData = data.filter(entry => entry.type === 'table' && entry.data && Array.isArray(entry.data));
 
-  // Assurez-vous que des données filtrées sont présentes
   if (filteredData.length === 0) {
     console.error("Aucune donnée valide n'a été trouvée dans le format attendu.");
     return;
   }
 
-  // Sélectionnez la première table de données filtrée (vous pouvez ajuster cela en fonction de votre structure)
   var tableData = filteredData[0].data;
 
-  // Filtrez les données uniquement pour le solveur ACE (insensible à la casse) et celles inférieures à 2400
   var filteredAceData = tableData.filter(entry => entry.name && entry.name.toLowerCase() === "ace" && parseFloat(entry.time) < 2400);
 
-  // Extraction des données pour le graphique
   var problemNames = filteredAceData.map(entry => entry.fullname);
   var times = filteredAceData.map(entry => parseFloat(entry.time));
 
