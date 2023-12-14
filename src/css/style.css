@@ -178,10 +178,18 @@ footer p{
 
 
 
+.nom_solver{
+  text-align: center;
+  font-size: 50px;
+  color: #3d6e9b;
+  font-weight: 100;
+  border-bottom: 4px solid #3d6e9b;
+  width: 600px;
+  margin: auto;
+}
 
-
-/*canvas*/
-
-canvas {
-  margin: 100px 0 ;
+.nom_solver span{
+  color: black;
+  font-weight: bold;
+  font-size: 50px;
 }
