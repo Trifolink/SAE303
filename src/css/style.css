@@ -9,7 +9,6 @@ body {
   overflow-x: hidden;
   font-family: "Comfortaa";
   margin: 0;
-
 }
 
 label .menu {
@@ -119,7 +118,7 @@ header{
     padding-bottom: 15px;
     margin-left: -20px;
     margin-right: -20px;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     background-color: #3d6e9b;
     color: white;
     z-index: 2;
@@ -137,10 +136,11 @@ span{
 
 
 footer {
+  margin-top: 100px;
   background-color: #3d6e9b;
   display: flex;
   align-items: center;
-  padding: 50px;
+  padding: 40px;
 }
 
 footer strong{
