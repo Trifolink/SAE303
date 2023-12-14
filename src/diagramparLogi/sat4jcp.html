@@ -14,6 +14,68 @@
     
 </head>
 <body>
+
+  <script>
+
+    /*diagramme 1*/
+    
+    
+    /*diagramme 2*/
+    
+    
+    /*diagramme 3*/
+    window.addEventListener('DOMContentLoaded', (event) => {
+            let solverPicatData = data[2].data.filter(entry => entry.name === 'BTD'); 
+
+            let solvedProblems = solverPicatData.filter(entry => entry.status === 'SAT').length;
+            let unknownProblems = solverPicatData.filter(entry => entry.status === 'UNKNOWN').length;
+            let unsatProblems = solverPicatData.filter(entry => entry.status === 'UNSAT').length;
+            let totalProblems = solverPicatData.length;
+
+            let solvedPercentage = (solvedProblems / totalProblems) * 100;
+            let unknownPercentage = (unknownProblems / totalProblems) * 100;
+            let unsatPercentage = (unsatProblems / totalProblems) * 100;
+
+            let ctx = document.getElementById('myPieChart').getContext('2d');
+            let myPieChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Résolus', 'Pas de solution', 'Non résolus à temps'],
+                    datasets: [{
+                        label: 'Statut du solver BTD',
+                        data: [solvedPercentage, unknownPercentage, unsatPercentage],
+                        backgroundColor: [
+                            'rgb(75, 192, 192)',
+                            'rgb(255, 205, 86)',
+                            'rgb(255, 99, 132)'
+                        ],
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed && context.parsed !== 0) {
+                                        label += context.parsed.toFixed(2) + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+      </script>
   <header>
     <label>
       <input type="checkbox">
@@ -36,6 +98,12 @@
   </header>
 <canvas style="width: 1400px; margin: auto  ;"  id="Sat4jcp"></canvas>
 
+
+<canvas style="width: 1400px; height: 500px; margin: auto;" id="Sat4jcp2"></canvas>
+
+
+ 
+<canvas style="width: 500px; margin: auto;" id="myPieChart"></canvas>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   if (typeof data === 'undefined') {

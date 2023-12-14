@@ -175,3 +175,6 @@ footer p{
 
 /*canvas*/
 
+canvas {
+  margin: 100px 0 ;
+}
