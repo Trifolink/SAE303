@@ -74,6 +74,66 @@ document.addEventListener("DOMContentLoaded", function() {
 /*diagramme 2*/
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    if (typeof data === 'undefined') {
+      console.error("La variable 'data' n'est pas définie dans SAE.js.");
+      return;
+    }
+
+    var filteredData = data.filter(entry => entry.type === 'table' && entry.data && Array.isArray(entry.data));
+
+    if (filteredData.length === 0) {
+      console.error("Aucune donnée valide n'a été trouvée dans le format attendu.");
+      return;
+    }
+
+    var tableData = filteredData[0].data;
+
+    var filteredAceData = tableData.filter(entry => entry.name && entry.name.toLowerCase() === "fun-scop-cad" && parseFloat(entry.time) < 2400);
+
+    // Tri des données par temps croissant
+    filteredAceData.sort((a, b) => parseFloat(a.time) - parseFloat(b.time));
+
+    var problemNames = filteredAceData.map(entry => entry.fullname);
+    var times = filteredAceData.map(entry => parseFloat(entry.time));
+
+    var ctx = document.getElementById('Fun-sCOP-cad2').getContext('2d');
+    var myCombinedChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: problemNames,
+        datasets: [{
+          label: 'Temps de résolution par problème (Fun-sCOP-cad)',
+          data: times,
+          fill: false,
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1,
+          pointRadius: 5,
+          pointHoverRadius: 8,
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            display: false,
+          },
+          y: {
+            beginAtZero: true,
+            max: 2400,
+            ticks: {
+              callback: function (value) {
+                return value + ' s';
+              }
+            }
+           
+          }
+        }
+      }
+    });
+  });
+
+
+
 /*diagramme 3*/
 window.addEventListener('DOMContentLoaded', (event) => {
             let solverPicatData = data[2].data.filter(entry => entry.name === 'Fun-sCOP-cad'); 
