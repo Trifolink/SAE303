@@ -17,10 +17,121 @@
   <script>
 
     /*diagramme 1*/
+
+    document.addEventListener("DOMContentLoaded", function() {
+  if (typeof data === 'undefined') {
+    console.error("La variable 'data' n'est pas définie dans SAE.js.");
+    return;
+  }
+
+  var filteredData = data.filter(entry => entry.type === 'table' && entry.data && Array.isArray(entry.data));
+
+  if (filteredData.length === 0) {
+    console.error("Aucune donnée valide n'a été trouvée dans le format attendu.");
+    return;
+  }
+
+  var tableData = filteredData[0].data;
+
+  var filteredAceData = tableData.filter(entry => entry.name && entry.name.toLowerCase() === "sat4j-rs" && parseFloat(entry.time) < 2400);
+
+  var problemNames = filteredAceData.map(entry => entry.fullname);
+  var times = filteredAceData.map(entry => parseFloat(entry.time));
+
+  var ctx = document.getElementById('Sat4jrs').getContext('2d');
+  var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: problemNames,
+      datasets: [{
+        label: 'Temps de résolution par problème (Sat4j-rs)',
+        data: times,
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 2400,
+          ticks: {
+              callback: function (value) {
+                return value + ' s';
+              }
+            }
+        }
+      }
+    }
+  });
+
+  myBarChart.options.plugins.legend.labels.filter = function(legendItem, chartData) {
+    return chartData.labels.indexOf(legendItem.text) !== -1;
+  };
+});
+
     
     
     /*diagramme 2*/
     
+    document.addEventListener("DOMContentLoaded", function () {
+    if (typeof data === 'undefined') {
+      console.error("La variable 'data' n'est pas définie dans SAE.js.");
+      return;
+    }
+
+    var filteredData = data.filter(entry => entry.type === 'table' && entry.data && Array.isArray(entry.data));
+
+    if (filteredData.length === 0) {
+      console.error("Aucune donnée valide n'a été trouvée dans le format attendu.");
+      return;
+    }
+
+    var tableData = filteredData[0].data;
+
+    var filteredAceData = tableData.filter(entry => entry.name && entry.name.toLowerCase() === "sat4j-rs" && parseFloat(entry.time) < 2400);
+
+    // Tri des données par temps croissant
+    filteredAceData.sort((a, b) => parseFloat(a.time) - parseFloat(b.time));
+
+    var problemNames = filteredAceData.map(entry => entry.fullname);
+    var times = filteredAceData.map(entry => parseFloat(entry.time));
+
+    var ctx = document.getElementById('Sat4jrs2').getContext('2d');
+    var myCombinedChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: problemNames,
+        datasets: [{
+          label: 'Temps de résolution par problème (Sat4j-rs)',
+          data: times,
+          fill: false,
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1,
+          pointRadius: 5,
+          pointHoverRadius: 8,
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            display: false,
+          },
+          y: {
+            beginAtZero: true,
+            max: 2400,
+            ticks: {
+              callback: function (value) {
+                return value + ' s';
+              }
+            }
+           
+          }
+        }
+      }
+    });
+  });
     
     /*diagramme 3*/
     window.addEventListener('DOMContentLoaded', (event) => {
@@ -95,70 +206,21 @@
       </label>
       <h1>SAE 303 NAS</h1>
   </header>
-<canvas style="width: 1400px; margin: auto  ;" id="Sat4jrs"></canvas>
+
+  <h1>Diagramme barre</h1>
+<p class="titre">Temps par résolutions des problèmes</p>
+<canvas style="width: 1400px; margin: auto  ; margin-bottom: 200px;" id="Sat4jrs"></canvas>
+
+<h1>Diagramme courbe à points</h1>
+<p class="titre">Temps par résolutions des problèmes par points</p>
+
+<canvas style="width: 1400px; height: 500px; margin: auto; margin-bottom: 200px;" id="Sat4jrs2"></canvas>
 
 
-<canvas style="width: 1400px; height: 500px; margin: auto;" id="Sat4jrs2"></canvas>
-
-
+<h1>Diagramme Circulaire</h1>
+<p class="titre">Pourcentage de résolutions des problèmes</p>
  
-<canvas style="width: 500px; margin: auto;" id="myPieChart"></canvas>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  if (typeof data === 'undefined') {
-    console.error("La variable 'data' n'est pas définie dans SAE.js.");
-    return;
-  }
-
-  var filteredData = data.filter(entry => entry.type === 'table' && entry.data && Array.isArray(entry.data));
-
-  if (filteredData.length === 0) {
-    console.error("Aucune donnée valide n'a été trouvée dans le format attendu.");
-    return;
-  }
-
-  var tableData = filteredData[0].data;
-
-  var filteredAceData = tableData.filter(entry => entry.name && entry.name.toLowerCase() === "sat4j-rs" && parseFloat(entry.time) < 2400);
-
-  var problemNames = filteredAceData.map(entry => entry.fullname);
-  var times = filteredAceData.map(entry => parseFloat(entry.time));
-
-  var ctx = document.getElementById('Sat4jrs').getContext('2d');
-  var myBarChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: problemNames,
-      datasets: [{
-        label: 'Temps de résolution par problème (Sat4j-rs)',
-        data: times,
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1,
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 2400,
-          ticks: {
-              callback: function (value) {
-                return value + ' s';
-              }
-            }
-        }
-      }
-    }
-  });
-
-  myBarChart.options.plugins.legend.labels.filter = function(legendItem, chartData) {
-    return chartData.labels.indexOf(legendItem.text) !== -1;
-  };
-});
-
-
-</script>
+<canvas style="width: 500px; margin: auto; margin-bottom: 200px;" id="myPieChart"></canvas>
 
 
 
