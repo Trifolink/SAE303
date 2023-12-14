@@ -7,6 +7,9 @@ html { font-size: 18px; }
 
 body {
   overflow-x: hidden;
+  font-family: "Comfortaa";
+  margin: 0;
+
 }
 
 label .menu {
@@ -15,7 +18,7 @@ label .menu {
   top: -100px;
   z-index: 1;
   width: 200px;
-  height: 200px;
+  height: 180px;
   background: #3d6e9b;
   border-radius: 50% 50% 50% 50%;
   -webkit-transition: .5s ease-in-out;
@@ -127,3 +130,41 @@ header{
 span{
     margin-top: 10px;
 }
+
+
+ /**************************************** footer ***************************************************/
+
+
+
+footer {
+  background-color: #3d6e9b;
+  display: flex;
+  align-items: center;
+  padding: 50px;
+}
+
+footer strong{
+  margin: 0 25px;
+  color: white;
+  font-size: large;
+}
+
+footer p{
+  color: white;
+}
+
+.FG{
+  display: flex;
+}
+
+.FD{
+  display: flex; 
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.FD img {
+  margin: 0 20px;
+  width: 10%;
+  height: 15%;
+} 
