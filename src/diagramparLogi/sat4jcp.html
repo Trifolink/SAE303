@@ -8,6 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/SAE.js"></script>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap">
+
     <link rel="stylesheet" href="../css/style.css">
     
 </head>
@@ -73,6 +75,11 @@ document.addEventListener("DOMContentLoaded", function() {
         y: {
           beginAtZero: true,
           max: 2400,
+          ticks: {
+              callback: function (value) {
+                return value + ' s';
+              }
+            }
         }
       }
     }
@@ -89,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <footer>
   <div class="FG">
-      <strong>Sebastien PIQUET</strong>
+      <strong>Sebastien PICQUET</strong>
       <strong>Nathan COQUART</strong>
       <strong>Abigail NOVAIS</strong>
   </div>
