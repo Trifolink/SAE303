@@ -16,11 +16,11 @@ label .menu {
   z-index: 1;
   width: 200px;
   height: 200px;
-  background: #82b6e6;
+  background: #3d6e9b;
   border-radius: 50% 50% 50% 50%;
   -webkit-transition: .5s ease-in-out;
   transition: .5s ease-in-out;
-  box-shadow: 0 0 0 0 #82b6e6, 0 0 0 0 #82b6e6;
+  box-shadow: 0 0 0 0 #3d6e9b, 0 0 0 0 #3d6e9b;
   cursor: pointer;
   
 }
@@ -57,7 +57,7 @@ label .hamburger:after { bottom: -10px; }
 label input { display: none; }
 
 label input:checked + .menu {
-  box-shadow: 0 0 0 100vw #82b6e6, 0 0 0 100vh #82b6e6;
+  box-shadow: 0 0 0 100vw #3d6e9b, 0 0 0 100vh #3d6e9b;
   border-radius: 0;
   
 }
@@ -112,14 +112,18 @@ h1{
 }
 
 header{
-    border-bottom: 4px solid white;
+    border-bottom: 4px solid black;
     padding-bottom: 15px;
     margin-left: -20px;
     margin-right: -20px;
     margin-bottom: 40px;
-    background-color: black;
+    background-color: #3d6e9b;
     color: white;
     z-index: 2;
     padding-top: 10px;
     margin-top: -10px;
+}
+
+span{
+    margin-top: 10px;
 }
